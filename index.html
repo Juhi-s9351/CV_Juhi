@@ -1,100 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juhi Singh | Academic Profile</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juhi Singh | Condensed Matter Physics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --light: #444444;
+      --border: #d8d8d8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 4rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 4rem 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-content { max-width: 760px; }
+
+    .hero-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.6rem;
+      color: var(--text);
+    }
+
+    h1 em { font-style: italic; font-weight: 300; }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--light);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.85;
+      font-weight: 300;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+
+    .meta-item {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .meta-item span {
+      display: block;
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-top: 0.3rem;
+      letter-spacing: 0;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 5rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+      color: var(--text);
+    }
+
+    /* ── RESEARCH ── */
+    .research-text {
+      font-size: 1.08rem;
+      color: var(--light);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .research-text p + p { margin-top: 1.1rem; }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .edu-year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      padding-top: 0.25rem;
+    }
+
+    .edu-details h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .edu-details p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-item {
+      padding: 1.6rem 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1.5rem;
+    }
+
+    .pub-year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      padding-top: 0.25rem;
+    }
+
+    .pub-title {
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .pub-authors {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .pub-journal {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    .pub-cited {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* ── SKILLS — bullet list style ── */
+    .skills-block { margin-bottom: 2.2rem; }
+
+    .skills-block h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      columns: 2;
+      column-gap: 3rem;
+    }
+
+    .skill-list.single { columns: 1; }
+
+    .skill-list li {
+      font-size: 0.98rem;
+      color: var(--light);
+      padding: 0.22rem 0 0.22rem 1.1rem;
+      position: relative;
+      break-inside: avoid;
+      font-weight: 300;
+    }
+
+    .skill-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    /* ── CONTACT ── */
+    .contact-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 0.9rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 1rem;
+      color: var(--light);
+    }
+
+    .contact-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .contact-row a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .contact-row a:hover { border-color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content > * { animation: fadeUp 0.6s ease both; }
+    .hero-content > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.35s; }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.2rem; }
+      #hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .edu-item, .pub-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .skill-list { columns: 1; }
+      .contact-row { grid-template-columns: 1fr; gap: 0.2rem; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <div class="container">
-        <h1>Juhi Singh</h1>
-        <p>PhD Researcher | Condensed Matter Physics</p>
-    </div>
-</header>
-
+<!-- NAV -->
 <nav>
-    <div class="container">
-        <ul>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#computational">Computational</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
+  <div class="nav-logo">Juhi Singh</div>
+  <ul>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<section id="research" class="container">
-    <h2>Research Introduction</h2>
-    <p>
-        Briefly describe your research area. For example:
-        Focused on transport properties in topological insulator-based interfaces,
-        combining density functional theory (DFT) with Wannier-based tight-binding
-        methods to investigate electronic structure and spin-dependent phenomena.
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-content">
+    <div class="hero-tag">PhD Researcher &nbsp;·&nbsp; IIT Roorkee &nbsp;·&nbsp; Condensed Matter Physics</div>
+    <h1>Juhi <em>Singh</em></h1>
+    <p class="hero-desc">
+      Theoretical physicist working on the electronic structure and quantum transport of
+      topological insulator heterostructures. My work combines first-principles calculations,
+      Wannier-based tight-binding methods, and analytical model Hamiltonians to study
+      proximity-induced magnetism, spin–charge conversion, and emergent Hall phenomena
+      at magnetic interfaces — with implications for spintronics and quantum materials.
     </p>
-</section>
-
-<section id="education" class="container">
-    <h2>Education</h2>
-    <div class="item">
-        <h3>PhD in Physics</h3>
-        <p>Indian Institute of Technology Roorkee, 2022 – Present</p>
+    <div class="hero-meta">
+      <div class="meta-item">Citations <span>6</span></div>
+      <div class="meta-item">h-index <span>2</span></div>
+      <div class="meta-item">Publications <span>4</span></div>
+      <div class="meta-item">Affiliation <span>IIT Roorkee</span></div>
     </div>
-    <div class="item">
-        <h3>MSc in Physics</h3>
-        <p>Indian Institute of Technology Gandhinagar, 2020 - 22</p>
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-label">01 — Overview</div>
+  <h2>Research</h2>
+  <div class="research-text">
+    <p>
+      My research sits at the interface of condensed matter theory and computational physics,
+      with a focus on <em>topological insulators</em>, <em>magnetic heterostructures</em>, and
+      <em>spin-dependent transport</em>. I investigate how interfacial symmetry breaking — driven
+      by proximity to magnetic insulators or altermagnets — gives rise to non-trivial Berry phase
+      topology, anisotropic Hall responses, and enhanced spin–charge interconversion.
+    </p>
+    <p>
+      Using a combination of density functional theory (DFT), Wannier tight-binding models,
+      and low-energy effective Hamiltonians, I study systems including Bi₂Se₃/EuS and
+      altermagnet–topological insulator bilayers. I also work on Monte Carlo simulations
+      of spin systems and develop model Hamiltonians for bulk, slab, bilayer, and trilayer geometries.
+    </p>
+    <p>
+      My work is motivated by the broader goal of understanding and controlling quantum
+      degrees of freedom at interfaces — knowledge central to designing next-generation
+      spintronic and topological quantum devices.
+    </p>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">02 — Academic Background</div>
+  <h2>Education</h2>
+
+  <div class="edu-item">
+    <div class="edu-year">2022 – Present</div>
+    <div class="edu-details">
+      <h3>Doctor of Philosophy, Physics</h3>
+      <p>Indian Institute of Technology Roorkee</p>
     </div>
+  </div>
+
+  <div class="edu-item">
+    <div class="edu-year">2020 – 2022</div>
+    <div class="edu-details">
+      <h3>Master of Science, Physics</h3>
+      <p>Indian Institute of Technology Gandhinagar</p>
+    </div>
+  </div>
+
+  <div class="edu-item">
+    <div class="edu-year">2017 – 2020</div>
+    <div class="edu-details">
+      <h3>Bachelor of Science, Physics</h3>
+      <p>Banasthali Vidyapith</p>
+    </div>
+  </div>
 </section>
 
-<section id="publications" class="container">
-    <h2>Publications & Preprints</h2>
-    <ul>
-        <li>
-            J. Singh and N. Mohanta, <strong>Interface controlled Berry phase and anisotropic spin–charge conversion in altermagnet–topological insulator bilayers</strong>, Materials Today Quantum (2025).
-        </li>
-        <li>
-            Author(s), <strong>Title</strong>, arXiv:xxxx.xxxxx
-        </li>
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-label">03 — Research Output</div>
+  <h2>Publications</h2>
+
+  <div class="pub-item">
+    <div class="pub-year">2025</div>
+    <div>
+      <div class="pub-title">Interface controlled Berry phase and anisotropic spin–charge conversion in altermagnet–topological insulator bilayers</div>
+      <div class="pub-authors">J. Singh, N. Mohanta</div>
+      <div class="pub-journal">Materials Today Quantum · 100058</div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-year">2024</div>
+    <div>
+      <div class="pub-title">Emergence of planar topological Hall anisotropy in Bi₂(Se,Te)₃ by proximity-induced spin-canted state of the Heisenberg ferromagnetic insulator EuS <span class="pub-cited">3 citations</span></div>
+      <div class="pub-authors">D. Suri, S. Sasmal, A. Bhardwaj, J. Singh, S. Mundlia, A. Mishra, N. Mohanta, et al.</div>
+      <div class="pub-journal">Physical Review B 110 (13) · 134433</div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-year">2024</div>
+    <div>
+      <div class="pub-title">Anisotropic planar Hall effects in Bi₂Se₃/EuS interfaces: Deciphering the role of proximity-induced spin canting and topological spin texture <span class="pub-cited">2 citations</span></div>
+      <div class="pub-authors">J. Singh, K.V. Raman, N. Mohanta</div>
+      <div class="pub-journal">Physical Review B 110 (12) · 125133</div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-year">2022</div>
+    <div>
+      <div class="pub-title">Coalescence preference dynamics for droplet growth during single-component fluid phase separation <span class="pub-cited">1 citation</span></div>
+      <div class="pub-authors">J. Singh, S. Roy</div>
+      <div class="pub-journal">Frontiers in Physics 10 · 1027192</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">04 — Expertise</div>
+  <h2>Skills</h2>
+
+  <div class="skills-block">
+    <h3>Computational Software</h3>
+    <ul class="skill-list">
+      <li>WIEN2k</li>
+      <li>Quantum ESPRESSO</li>
+      <li>Wannier90</li>
+      <li>Wien2Wannier</li>
+      <li>WannierTools</li>
+      <li>Vampire</li>
+      <li>COMSOL</li>
     </ul>
-</section>
+  </div>
 
-<section id="skills" class="container">
-    <h2>Skills</h2>
-    <ul class="grid">
-        <li>Condensed Matter Theory</li>
-        <li>Electronic Structure Calculations</li>
-        <li>Topological Materials</li>
-        <li>Data Analysis</li>
+  <div class="skills-block">
+    <h3>Theoretical &amp; Analytical Methods</h3>
+    <ul class="skill-list">
+      <li>Density Functional Theory (DFT)</li>
+      <li>Tight-Binding &amp; Model Hamiltonians</li>
+      <li>Berry Phase &amp; Berry Curvature</li>
+      <li>Kubo Formula — Hall Conductivity</li>
+      <li>Spin Hall &amp; Edelstein Effect</li>
+      <li>Spin Texture Analysis</li>
+      <li>Proximity Effect Modelling</li>
+      <li>Spin-Canting in Heisenberg Systems</li>
+      <li>Symmetry Analysis — Magnetic Space Groups</li>
+      <li>Monte Carlo Simulations (spin systems)</li>
+      <li>Numerical Hamiltonian Diagonalization</li>
+      <li>Bulk / Slab / Bilayer / Trilayer Geometry</li>
+      <li>Altermagnetic Systems</li>
+      <li>Topological Surface States</li>
     </ul>
-</section>
+  </div>
 
-<section id="computational" class="container">
-    <h2>Computational Skills</h2>
-    <ul class="grid">
-        <li>WIEN2k</li>
-        <li>Wannier90</li>
-        <li>WannierTools</li>
-        <li>Quantum ESPRESSO</li>
-        <li>Python (NumPy, SciPy, Matplotlib)</li>
-        <li>MPI / HPC Workflows</li>
+  <div class="skills-block">
+    <h3>Programming Languages</h3>
+    <ul class="skill-list single">
+      <li>Python (NumPy, SciPy, Matplotlib)</li>
+      <li>MATLAB</li>
+      <li>C++</li>
     </ul>
+  </div>
+
+  <div class="skills-block">
+    <h3>Research Areas</h3>
+    <ul class="skill-list">
+      <li>Topological Insulators &amp; Semimetals</li>
+      <li>Condensed Matter Theory</li>
+      <li>Spintronics &amp; Spin Transport</li>
+      <li>Quantum Transport</li>
+      <li>Magnetic Heterostructures</li>
+      <li>Electronic Structure</li>
+    </ul>
+  </div>
 </section>
 
-<section id="contact" class="container">
-    <h2>Contact</h2>
-    <p>Email: your.email@example.com</p>
-    <p>GitHub: github.com/yourprofile</p>
-    <p>LinkedIn: linkedin.com/in/yourprofile</p>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">05 — Get in Touch</div>
+  <h2>Contact</h2>
+
+  <div class="contact-row">
+    <span class="contact-label">Email</span>
+    <a href="mailto:juhi_s@ph.iitr.ac.in">juhi_s@ph.iitr.ac.in</a>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">GitHub</span>
+    <span style="color:var(--muted); font-size:0.9rem; font-style:italic;">—</span>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">Scholar</span>
+    <a href="https://scholar.google.com" target="_blank">Google Scholar Profile</a>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">Institution</span>
+    <span style="font-size:0.95rem; color:var(--muted);">Department of Physics, IIT Roorkee, Uttarakhand 247667, India</span>
+  </div>
 </section>
 
 <footer>
-    <div class="container">
-        <p>© 2026 Your Name</p>
-    </div>
+  © 2026 Juhi Singh &nbsp;·&nbsp; IIT Roorkee &nbsp;·&nbsp; Condensed Matter Physics
 </footer>
 
 </body>
